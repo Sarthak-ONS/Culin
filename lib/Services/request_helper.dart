@@ -16,8 +16,11 @@ class RequestHelper {
   final String _baseURL = "api.spoonacular.com";
   Future makeRequest(context) async {
     try {
-      Uri uri = Uri.https(_baseURL, '/recipes/random',
-          Provider.of<FilterProvider>(context, listen: false).parameters);
+      Uri uri = Uri.https(
+        _baseURL,
+        '/recipes/random',
+        Provider.of<FilterProvider>(context, listen: false).parameters,
+      );
 
       Map<String, String> headers = {
         HttpHeaders.contentTypeHeader: 'application/json',

@@ -31,67 +31,83 @@ class _HomeScreenState extends State<HomeScreen> {
           //print(listOfCusines.length);
         },
       ),
-      appBar: AppBar(
-        backgroundColor: Colors.black12,
-        title: ClipOval(
-          child: Image.asset(
-            "Assets/Images/Logo.jpg",
-            width: 55,
-            height: 55,
-          ),
-        ),
-        bottom: PreferredSize(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
-              HomeScreenFilterWidget(
-                title: "Cusines",
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool isScroll) {
+          return [
+            SliverAppBar(
+              backgroundColor: Colors.black26,
+              title: ClipOval(
+                child: Image.asset(
+                  "Assets/Images/Logo.jpg",
+                  width: 55,
+                  height: 55,
+                ),
               ),
-              HomeScreenFilterWidget(
-                title: "Wines",
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                )
+              ],
+              excludeHeaderSemantics: true,
+              expandedHeight: 0,
+              primary: true,
+              elevation: 0,
+              bottom: PreferredSize(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    HomeScreenFilterWidget(
+                      title: "Cusines",
+                    ),
+                    HomeScreenFilterWidget(
+                      title: "Wines",
+                    ),
+                    HomeScreenFilterWidget(
+                      title: "Meal Planning",
+                    ),
+                  ],
+                ),
+                preferredSize: const Size(double.infinity, 50),
               ),
-              HomeScreenFilterWidget(
-                title: "Meal Planning",
-              ),
-            ],
-          ),
-          preferredSize: const Size(double.infinity, 50),
-        ),
-        elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-              color: Colors.white,
-              size: 30,
+            )
+          ];
+        },
+        body: ListView(
+          children: const [
+            RecipeOfTheDay(),
+            SizedBox(
+              height: 15,
             ),
-          )
-        ],
-      ),
-      body: ListView(
-        children: const [
-          RecipeOfTheDay(),
-          SizedBox(
-            height: 15,
-          ),
-          HomePageWidgetCategorizedContainer(
-            title: "Trending",
-            image: "2",
-          ),
-          HomePageWidgetCategorizedContainer(
-            title: "Recommended",
-            image: "1",
-          ),
-          HomePageWidgetCategorizedContainer(
-            title: "Sweet",
-            image: "3",
-          ),
-        ],
+            HomePageWidgetCategorizedContainer(
+              title: "Trending",
+              image: "2",
+            ),
+            HomePageWidgetCategorizedContainer(
+              title: "Recommended",
+              image: "1",
+            ),
+            HomePageWidgetCategorizedContainer(
+              title: "Sweet",
+              image: "3",
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+// AppBar(
+//         backgroundColor: Colors.black12,
+
+//         bottom: ,
+
+//       )
 
 class HomePageWidgetCategorizedContainer extends StatelessWidget {
   const HomePageWidgetCategorizedContainer({Key? key, this.image, this.title})
